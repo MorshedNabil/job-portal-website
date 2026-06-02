@@ -1,4 +1,4 @@
-# Job Portal Website - Django
+# Job Portal Website
 
 Fresh Django conversion of the original job portal project.
 
