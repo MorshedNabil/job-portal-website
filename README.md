@@ -40,6 +40,22 @@ Admin:
 http://127.0.0.1:8000/admin/
 ```
 
+Frontend:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open:
+
+```text
+http://127.0.0.1:5173
+```
+
+Set `VITE_API_BASE_URL` in `frontend/.env` if your Django API is not running at `http://127.0.0.1:8000`.
+
 ## API Map
 
 - `POST /api/auth/register/`
