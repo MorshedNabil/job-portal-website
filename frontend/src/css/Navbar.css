@@ -1,0 +1,24 @@
+.navbar-pro {
+  background: linear-gradient(135deg, #0b1220, #1d4ed8);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.14);
+}
+
+.navbar-pro .navbar-brand {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-pro .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 700;
+}
+
+.navbar-pro .nav-link:hover { color: #fff !important; }
+
+.navbar-pro .btn-logout {
+  border-radius: 12px;
+  font-weight: 800;
+}

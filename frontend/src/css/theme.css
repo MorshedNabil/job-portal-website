@@ -1,0 +1,81 @@
+:root {
+  --bg: #f5f8ff;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #1d4ed8;
+  --primary2: #2563eb;
+  --border: #e5e7eb;
+  --shadow: 0 14px 34px rgba(15, 23, 42, 0.10);
+  --radius: 16px;
+}
+
+body {
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(37, 99, 235, 0.18), transparent 60%),
+              radial-gradient(900px 500px at 95% 10%, rgba(29, 78, 216, 0.14), transparent 55%),
+              var(--bg);
+  color: var(--text);
+}
+
+.page-wrap { padding: 26px 0; }
+.section-title { font-weight: 800; letter-spacing: 0.2px; }
+.text-muted2 { color: var(--muted) !important; }
+
+.card-pro {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.btn-pro {
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  border: 0;
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 800;
+}
+.btn-pro:hover { filter: brightness(0.98); transform: translateY(-1px); }
+
+.badge-soft {
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 800;
+  border: 1px solid transparent;
+  text-transform: capitalize;
+}
+.badge-soft.pending  { background: #fff7ed; color: #9a3412; border-color: #fed7aa; }
+.badge-soft.accepted { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+.badge-soft.rejected { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+
+.table-pro thead th {
+  background: #eef2ff;
+  border-bottom: 1px solid var(--border) !important;
+  color: #334155;
+  font-weight: 900;
+}
+
+.form-control:focus {
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+}
+
+.hero-pro {
+  padding: 46px 22px;
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(135deg, #0b1220, #1d4ed8);
+  box-shadow: var(--shadow);
+}
+
+.job-card-pro {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+  transition: 0.18s ease;
+}
+.job-card-pro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12);
+}
