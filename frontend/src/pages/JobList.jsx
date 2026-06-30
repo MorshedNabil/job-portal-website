@@ -4,13 +4,14 @@ import { useSelector } from "react-redux";
 import "../css/JobList.css";
 import { Link } from "react-router-dom";
 
-const FALLBACK_IMG = "https://picsum.photos/seed/kaajkormo/800/520";
+const FALLBACK_IMG = "/default-job.jpg";
 
 export default function JobList() {
   const user = useSelector((s) => s.auth.user);
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
   const [q, setQ] = useState("");
   const [location, setLocation] = useState("");
@@ -22,13 +23,17 @@ export default function JobList() {
   const fetchJobs = useCallback(async () => {
     try {
       setLoading(true);
+      setError(null);
       const { data } = await api.get("/jobs/", { params: { q, location, page, limit } });
       const items = data.items || data.results || [];
       setJobs(items);
       setTotalPages(data.totalPages || Math.ceil((data.count || items.length) / limit) || 1);
       setTotal(data.total || data.count || items.length);
     } catch (err) {
-      console.error(err);
+      const msg = err.response
+        ? `Server error ${err.response.status}: ${err.response.data?.message || err.response.statusText}`
+        : `Cannot reach server — is the backend running at ${api.defaults.baseURL}?`;
+      setError(msg);
       setJobs([]);
       setTotalPages(1);
       setTotal(0);
@@ -96,7 +101,15 @@ export default function JobList() {
         </div>
       )}
 
-      {!loading && jobs.length === 0 && (
+      {!loading && error && (
+        <div className="alert alert-danger my-5 py-4">
+          <i className="fa-solid fa-triangle-exclamation me-2"></i>
+          {error}
+          <button className="btn btn-sm btn-outline-danger ms-3" onClick={fetchJobs}>Retry</button>
+        </div>
+      )}
+
+      {!loading && !error && jobs.length === 0 && (
         <div className="alert alert-info text-center my-5 py-4">
           No jobs found matching your criteria.
         </div>
@@ -108,9 +121,9 @@ export default function JobList() {
             <div key={job.id || job._id} className="col-12 col-md-6 col-lg-4">
               <div className="card h-100 shadow-sm job-card">
                 <img
-                  src={job.imageUrl || FALLBACK_IMG}
+                  src={job.image_url || FALLBACK_IMG}
                   className="card-img-top job-img"
-                  alt={job.title}
+                  alt={job.title} 
                   loading="lazy"
                   onError={(e) => (e.currentTarget.src = FALLBACK_IMG)}
                 />

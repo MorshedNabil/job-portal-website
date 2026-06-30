@@ -1,37 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import { Link } from "react-router-dom";
 import "../css/Home.css";
 
-const FALLBACK_IMG = "https://picsum.photos/seed/kaajkormo/800/520";
+const FALLBACK_IMG = "/default-job.jpg";
 
 export default function Home() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const slides = useMemo(() => [
-    {
-      title: "Welcome to Kaaj Kormo",
-      subtitle: "Find jobs or hire skilled workers easily across Bangladesh.",
-      img: "/images/hero/slide-1.jpg",
-      ctaText: "Browse Jobs",
-      ctaLink: "/jobs",
-    },
-    {
-      title: "Hire Skilled Workers Fast",
-      subtitle: "Post a job and get applications quickly.",
-      img: "/images/hero/slide-2.jpg",
-      ctaText: "Post a Job",
-      ctaLink: "/register",
-    },
-    {
-      title: "Trusted Local Services",
-      subtitle: "Driver, Cleaner, Electrician, Plumber—everything in one place.",
-      img: "/images/hero/slide-3.jpg",
-      ctaText: "Explore Categories",
-      ctaLink: "/jobs",
-    },
-  ], []);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -49,61 +25,67 @@ export default function Home() {
 
   return (
     <div className="page-wrap">
-      {/* HERO SLIDER */}
-      <section className="container my-4">
-        <div
-          id="homeHero"
-          className="carousel slide hero-carousel shadow-sm"
-          data-bs-ride="carousel"
-          data-bs-interval="3500"
-        >
-          <div className="carousel-indicators">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                data-bs-target="#homeHero"
-                data-bs-slide-to={i}
-                className={i === 0 ? "active" : ""}
-                aria-current={i === 0 ? "true" : "false"}
-              />
-            ))}
-          </div>
+      {/* HERO */}
+      <section className="hero-section">
+        <div className="container-xl">
+          <div className="hero-inner">
+            {/* Left: text */}
+            <div className="hero-text">
+              <span className="hero-eyebrow">JOB PORTAL</span>
+              <h1 className="hero-heading">
+                Welcome to<br />
+                <span className="hero-brand">Kaj Kormo</span>
+              </h1>
+              <p className="hero-sub">
+                Find your next opportunity or hire<br className="d-none d-lg-block" />
+                the right person — all in one place.
+              </p>
+              <Link to="/register" className="hero-cta">Get Started →</Link>
+            </div>
 
-          <div className="carousel-inner rounded-4 overflow-hidden">
-            {slides.map((s, i) => (
-              <div className={`carousel-item ${i === 0 ? "active" : ""}`} key={s.title}>
-                <div
-                  className="hero-slide d-flex align-items-center"
-                  style={{
-                    backgroundImage: `linear-gradient(120deg, rgba(2,6,23,.70), rgba(37,99,235,.45)), url(${s.img})`,
-                  }}
-                >
-                  <div className="container py-5">
-                    <div className="text-white" style={{ maxWidth: 720 }}>
-                      <h1 className="fw-bold display-5 mb-2">{s.title}</h1>
-                      <p className="mb-4 opacity-75">{s.subtitle}</p>
-                      <div className="d-flex gap-2 flex-wrap">
-                        <Link to={s.ctaLink} className="btn btn-light fw-bold px-4">
-                          {s.ctaText}
-                        </Link>
-                        <Link to="/login" className="btn btn-outline-light fw-bold px-4">
-                          Login
-                        </Link>
-                      </div>
-                    </div>
+            {/* Right: floating visuals */}
+            <div className="hero-visual">
+              {/* Filled circles */}
+              <div className="hcircle hcircle-xl" />
+              <div className="hcircle hcircle-lg" />
+              <div className="hcircle hcircle-md" />
+              <div className="hcircle hcircle-sm" />
+              <div className="hcircle hcircle-xs" />
+              {/* Outline circles */}
+              <div className="hcircle hcircle-outline-lg" />
+              <div className="hcircle hcircle-outline-sm" />
+
+              <div className="hero-badge">
+                <strong>2,400+</strong>
+                <span>Jobs Available</span>
+              </div>
+
+              <div className="hero-card">
+                <div className="hero-card-top">
+                  <span className="hero-card-icon">
+                    <i className="fa-solid fa-check" />
+                  </span>
+                  <div>
+                    <div className="hero-card-title">Software Engineer</div>
+                    <div className="hero-card-meta">Dhaka · Full-time</div>
                   </div>
                 </div>
+                <div className="hero-card-actions">
+                  <span className="hca-apply">Apply Now</span>
+                  <span className="hca-salary">৳ 50k</span>
+                </div>
               </div>
-            ))}
-          </div>
 
-          <button className="carousel-control-prev" type="button" data-bs-target="#homeHero" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#homeHero" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          </button>
+              <div className="hero-float-icon">
+                <i className="fa-solid fa-briefcase" />
+              </div>
+
+              {/* Pink pin icon */}
+              <div className="hero-pin">
+                <i className="fa-solid fa-location-dot" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -151,7 +133,7 @@ export default function Home() {
               <div key={job.id || job._id} className="col-12 col-md-6 col-lg-4">
                 <div className="card h-100 shadow-sm job-card">
                   <img
-                    src={job.imageUrl || FALLBACK_IMG}
+                    src={job.image_url || FALLBACK_IMG}
                     className="card-img-top job-img"
                     alt={job.title}
                     loading="lazy"
