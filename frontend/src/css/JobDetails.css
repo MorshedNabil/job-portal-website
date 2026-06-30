@@ -1,48 +1,323 @@
-:root {
-  --primary: #4361ee;
-  --primary-dark: #3f37c9;
-  --dark: #0d1321;
-  --bg: #f5f7ff;
-  --card-bg: rgba(255, 255, 255, 0.92);
-  --shadow-md: 0 12px 40px rgba(67, 97, 238, 0.14);
-  --radius-lg: 20px;
-  --radius: 16px;
-  --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+/* =============================================
+   JOB DETAIL PAGE
+   ============================================= */
+
+.jd-page {
+  padding: 24px 16px 56px;
+  max-width: 1080px;
 }
 
-.card-pro {
-  border: none;
-  border-radius: var(--radius-lg);
-  background: var(--card-bg);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  transition: var(--transition);
-  margin-top: 1.5rem;
-}
-
-.card-body { padding: 2.5rem 2.2rem; }
-
-.text-muted2 { color: #6b7280; font-size: 1.05rem; }
-
-.btn-pro {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white;
-  font-weight: 700;
-  font-size: 1.1rem;
-  padding: 0.95rem 2.2rem;
-  border: none;
+/* ---- Shared card shell ---- */
+.jd-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
   border-radius: 14px;
-  transition: var(--transition);
-  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
-  width: 100%;
-  max-width: 260px;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.07);
 }
-.btn-pro:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 16px 40px rgba(67, 97, 238, 0.45);
-}
-.btn-pro:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; }
 
+/* ---- Back button ---- */
+.jd-back-btn {
+  background: none;
+  border: none;
+  color: #334155;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.18s;
+}
+.jd-back-btn:hover { color: #1d4ed8; }
+
+/* ---- Header card ---- */
+.jd-header-card { padding: 20px 22px; }
+
+.jd-company-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f8fafc;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.jd-company-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+.jd-job-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.25;
+}
+.jd-title-blue { color: #1e3a8a; }
+.jd-title-red  { color: #9f1239; }
+
+
+/* ---- Action bar ---- */
+.jd-action-bar {
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.jd-deadline {
+  font-size: 0.88rem;
+  color: #334155;
+}
+
+.jd-deadline-date {
+  color: #e11d48;
+  font-weight: 700;
+}
+
+.jd-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.jd-apply-btn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s;
+  white-space: nowrap;
+}
+.jd-apply-btn:hover:not(:disabled) { background: #15803d; }
+.jd-apply-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.jd-icon-btn {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 7px 13px;
+  font-size: 0.86rem;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.jd-icon-btn:hover { background: #f1f5f9; }
+
+.jd-share-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  color: #475569;
+}
+
+.jd-share-label { white-space: nowrap; }
+
+.jd-social {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.jd-social:hover { transform: scale(1.12); opacity: 0.9; }
+.jd-social.fb { background: #1877f2; }
+.jd-social.li { background: #0a66c2; }
+.jd-social.wa { background: #25d366; }
+
+/* ---- Tab navigation ---- */
+.jd-tab-nav {
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.jd-tab-arrow {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.jd-tab-arrow:hover { background: #f1f5f9; }
+
+.jd-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  text-align: center;
+}
+.jd-tab:hover { background: #f1f5f9; color: #334155; }
+.jd-tab.active {
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+/* ---- Info grid ---- */
+.jd-info-grid {
+  padding: 18px 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px 10px;
+}
+
+.jd-info-item {
+  font-size: 0.88rem;
+  color: #334155;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.jd-info-label { color: #64748b; white-space: nowrap; }
+.jd-info-val   { font-weight: 700; }
+.jd-info-blue  { color: #1d4ed8; }
+
+/* ---- Video CV notice ---- */
+.jd-video-notice {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 0.9rem;
+  color: #1e40af;
+}
+
+/* ---- Content sections ---- */
+.jd-section { padding: 22px 24px; }
+
+.jd-section-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+.color-red    { color: #e11d48; }
+.color-blue   { color: #1d4ed8; }
+.color-purple { color: #7c3aed; }
+
+.jd-sub-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #334155;
+  margin: 14px 0 6px;
+}
+
+.jd-list {
+  padding-left: 20px;
+  margin: 0 0 10px;
+  color: #475569;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.jd-body-text {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ---- Apply modal ---- */
+.jd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 16px;
+}
+
+.jd-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  overflow: hidden;
+}
+
+.jd-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.jd-modal-head h5 {
+  font-size: 0.98rem;
+  font-weight: 800;
+  margin: 0;
+  color: #1e293b;
+}
+.jd-modal-head button {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.jd-modal-head button:hover { background: #f1f5f9; }
+
+.jd-modal-body { padding: 20px; }
+
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
-  .card-body { padding: 2rem 1.5rem; }
+  .jd-info-grid { grid-template-columns: repeat(2, 1fr); }
+  .jd-action-bar { flex-direction: column; align-items: flex-start; }
+  .jd-actions { width: 100%; flex-wrap: wrap; }
+  .jd-apply-btn { width: 100%; text-align: center; }
+  .jd-tab { font-size: 0.78rem; padding: 7px 6px; }
+}
+
+@media (max-width: 480px) {
+  .jd-info-grid { grid-template-columns: 1fr 1fr; }
+  .jd-job-title { font-size: 1.2rem; }
+  .jd-tab-nav { overflow-x: auto; }
 }

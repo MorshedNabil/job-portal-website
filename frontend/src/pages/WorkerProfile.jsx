@@ -83,7 +83,7 @@ export default function WorkerProfile() {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4">Worker Profile</h2>
+      <h2 className="mb-4">My Profile</h2>
 
       <form onSubmit={handleUpdate}>
         <label className="form-label">Name</label>

@@ -72,6 +72,18 @@
   text-align: center;
 }
 
+.pj-section-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--primary);
+  border-bottom: 2px solid #eef0fb;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+
 @media (max-width: 576px) {
   .post-job-card { padding: 1.5rem; }
   .card-header { padding: 2rem 1.5rem 1rem; }
