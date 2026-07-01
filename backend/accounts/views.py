@@ -3,12 +3,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import AdminRegisterSerializer, LoginSerializer, RegisterSerializer, UserSerializer, token_for_user
+from .serializers import AdminRegisterSerializer, LoginSerializer, RegisterSerializer, UserSerializer, tokens_for_user
 
 
 def auth_payload(user):
     data = UserSerializer(user).data
-    data["token"] = token_for_user(user)
+    data.update(tokens_for_user(user)) # both refresh token and access token are sending to the frontend
     return data
 
 

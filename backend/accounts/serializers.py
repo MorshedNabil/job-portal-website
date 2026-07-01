@@ -7,9 +7,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 User = get_user_model()
 
 
-def token_for_user(user):
+def tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
-    return str(refresh.access_token)
+    return {"token": str(refresh.access_token), "refreshToken": str(refresh)}
 
 
 class UserSerializer(serializers.ModelSerializer):
